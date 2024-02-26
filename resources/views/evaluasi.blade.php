@@ -83,6 +83,63 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content">
+
+    @php
+    $min_cas1 = PHP_INT_MAX;
+    $min_cas3 = PHP_INT_MAX;
+    $max_cas2 = PHP_INT_MIN;
+    $max_cas4 = PHP_INT_MIN;
+@endphp
+
+    @foreach ($sahams as $saham)
+    @foreach ($kriterias as $kriteria)
+        @php
+            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            if ($evaluasi) {
+                switch ($kriteria->id) {
+                    case 1:
+                        if ($evaluasi->nilai <= 15) {
+                            $min_cas1 = min($min_cas1, 1);
+                        } elseif ($evaluasi->nilai >= 15.01 && $evaluasi->nilai <= 20.99) {
+                            $min_cas1 = min($min_cas1, 2);
+                        } elseif ($evaluasi->nilai >= 21) {
+                            $min_cas1 = min($min_cas1, 3);
+                        }
+                        break;
+                    case 2:
+                        if ($evaluasi->nilai <= 10) {
+                            $max_cas2 = max($max_cas2, 1);
+                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 15.99) {
+                            $max_cas2 = max($max_cas2, 2);
+                        } elseif ($evaluasi->nilai >= 16) {
+                            $max_cas2 = max($max_cas2, 3);
+                        }
+                        break;
+                    case 3:
+                        if ($evaluasi->nilai <= 1) {
+                            $min_cas3 = min($min_cas3, 1);
+                        } elseif ($evaluasi->nilai >= 1.01 && $evaluasi->nilai <= 2.09) {
+                            $min_cas3 = min($min_cas3, 2);
+                        } elseif ($evaluasi->nilai >= 2.1) {
+                            $min_cas3 = min($min_cas3, 3);
+                        }
+                        break;
+                    case 4:
+                        if ($evaluasi->nilai <= 10) {
+                            $max_cas4 = max($max_cas4, 1);
+                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 30.99) {
+                            $max_cas4 = max($max_cas4, 2);
+                        } elseif ($evaluasi->nilai >= 31) {
+                            $max_cas4 = max($max_cas4, 3);
+                        }
+                        break;
+                    default:
+                        // do nothing
+                }
+            }
+        @endphp
+    @endforeach
+@endforeach
         <h1>Perangkingan</h1>
         @php
     $totalNilaiPerSaham = [];
@@ -131,10 +188,18 @@
                         break;
                 }
                 if ($kriteria->atribut == 'Benefit') {
-                    $nilai = (double)($nilai / 3);
-                } elseif ($kriteria->atribut == 'Cost') {
-                    $nilai = (double)(1 / $nilai);
-                }
+                                if ($kriteria->id == 2) {
+                                    $nilai = (double)($nilai / $max_cas2);
+                                } elseif ($kriteria->id == 4) {
+                                    $nilai = (double)($nilai / $max_cas4);
+                                }
+                            } elseif ($kriteria->atribut == 'Cost') {
+                                if ($kriteria->id == 1) {
+                                    $nilai = (double)($min_cas1 / $nilai);
+                                } elseif ($kriteria->id == 3) {
+                                    $nilai = (double)($min_cas3 / $nilai);
+                                }
+                            }
                 $nilai *= $kriteria->bobot;
                 $totalNilai += $nilai;
             }

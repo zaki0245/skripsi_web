@@ -139,7 +139,7 @@
                                     case 1:
                                         if ($evaluasi->nilai <= 15) {
                                             echo 1;
-                                        } elseif ($evaluasi->nilai >= 15 && $evaluasi->nilai <= 20) {
+                                        } elseif ($evaluasi->nilai >= 15.01 && $evaluasi->nilai <= 20.99) {
                                             echo 2;
                                         } elseif ($evaluasi->nilai >= 21) {
                                             echo 3;
@@ -148,25 +148,25 @@
                                     case 2:
                                         if ($evaluasi->nilai <= 10) {
                                             echo 1;
-                                        } elseif ($evaluasi->nilai >= 11 && $evaluasi->nilai <= 15) {
+                                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 15.99) {
                                             echo 2;
-                                        } elseif ($evaluasi->nilai >= 15.1) {
+                                        } elseif ($evaluasi->nilai >= 16) {
                                             echo 3;
                                         }
                                         break;
                                     case 3:
                                         if ($evaluasi->nilai <= 1) {
                                             echo 1;
-                                        } elseif ($evaluasi->nilai >= 1. && $evaluasi->nilai <= 2) {
+                                        } elseif ($evaluasi->nilai >= 1.01 && $evaluasi->nilai <= 2.09) {
                                             echo 2;
-                                        } elseif ($evaluasi->nilai >= 2.01) {
+                                        } elseif ($evaluasi->nilai >= 2.1) {
                                             echo 3;
                                         }
                                         break;
                                     case 4:
                                         if ($evaluasi->nilai <= 10) {
                                             echo 1;
-                                        } elseif ($evaluasi->nilai >= 11 && $evaluasi->nilai <= 30) {
+                                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 30.99) {
                                             echo 2;
                                         } elseif ($evaluasi->nilai >= 31) {
                                             echo 3;
@@ -210,7 +210,7 @@
                                     case 1:
                                         if ($nilai <= 15) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20) {
+                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 21) {
                                             $nilai = 3.0;
@@ -219,25 +219,25 @@
                                     case 2:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 15) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 15.1) {
+                                        } elseif ($nilai >= 16) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 3:
                                         if ($nilai <= 1) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2) {
+                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 2.01) {
+                                        } elseif ($nilai >= 21) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 4:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 30) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 31) {
                                             $nilai = 3.0;
@@ -287,7 +287,7 @@
                                     case 1:
                                         if ($nilai <= 15) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20) {
+                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 21) {
                                             $nilai = 3.0;
@@ -296,25 +296,25 @@
                                     case 2:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 15) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 15.1) {
+                                        } elseif ($nilai >= 16) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 3:
                                         if ($nilai <= 1) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2) {
+                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 2.01) {
+                                        } elseif ($nilai >= 2.1) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 4:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 30) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 31) {
                                             $nilai = 3.0;
@@ -366,7 +366,7 @@
                                     case 1:
                                         if ($nilai <= 15) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20) {
+                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 21) {
                                             $nilai = 3.0;
@@ -375,25 +375,25 @@
                                     case 2:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 15) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 15.1) {
+                                        } elseif ($nilai >= 16) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 3:
                                         if ($nilai <= 1) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2) {
+                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
                                             $nilai = 2.0;
-                                        } elseif ($nilai >= 2.01) {
+                                        } elseif ($nilai >= 2.1) {
                                             $nilai = 3.0;
                                         }
                                         break;
                                     case 4:
                                         if ($nilai <= 10) {
                                             $nilai = 1.0;
-                                        } elseif ($nilai >= 11 && $nilai <= 30) {
+                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
                                             $nilai = 2.0;
                                         } elseif ($nilai >= 31) {
                                             $nilai = 3.0;

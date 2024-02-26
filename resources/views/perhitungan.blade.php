@@ -12,7 +12,7 @@
             position: fixed;
             top: 0;
             left: -250px;
-            background-color: #007bff;
+            background-color: #698270;
             padding-top: 50px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
@@ -42,7 +42,7 @@
         .header {
             text-align: center;
             padding: 20px 0;
-            background-color: #007bff;
+            background-color: #698270;
             color: #fff;
             width: 100%;
             z-index: 500;
@@ -54,7 +54,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background-color: #007bff;
+            background-color: #698270;
             color: #fff;
             border: none;
             padding: 10px 15px;

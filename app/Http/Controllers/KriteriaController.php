@@ -9,11 +9,10 @@ use App\Http\Controllers\Controller;
 
 class KriteriaController extends Controller
 {
-    // KriteriaController.php
 public function updateBobot(Request $request, $id)
 {
     $validatedData = $request->validate([
-        'bobot' => 'required|numeric', // Atur validasi sesuai kebutuhan
+        'bobot' => 'required|numeric', 
     ]);
 
     $kriteria = Kriteria::findOrFail($id);

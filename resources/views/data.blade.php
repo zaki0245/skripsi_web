@@ -68,10 +68,10 @@
         <h2>Fitur</h2>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('data.index') }}">Data</a>
+                <a class="nav-link" href="{{ route('data.index') }}">Data Aktual</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('perhitungan') }}">Perhitungan</a>
+                <a class="nav-link" href="{{ route('perhitungan') }}">Manajemen Bobot</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">Evaluasi</a>
@@ -82,7 +82,7 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content" id="content">
-        <h1>Data Aktual</h1>
+        <h1>Data</h1>
         <table class="table table-striped">
             <thead>
                 <tr>

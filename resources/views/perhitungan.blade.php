@@ -70,10 +70,10 @@
         <h2>Fitur</h2>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('data.index') }}">Data</a>
+                <a class="nav-link" href="{{ route('data.index') }}">Data Aktual</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('perhitungan') }}">Perhitungan</a>
+                <a class="nav-link" href="{{ route('perhitungan') }}">Manajemen Bobot</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('evaluasi') }}">Evaluasi</a>
@@ -85,423 +85,32 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content">
-        <h1>Data Awal</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Saham</th>
-                    @foreach ($kriterias as $kriteria)
-                        <th>{{ $kriteria->indikator }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($sahams as $saham)
+        <h1>Nilai Bobot</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ $saham->saham }}</td>
-                        @foreach ($kriterias as $kriteria)
-                            <td>
-                                @php
-                                    $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                                @endphp
-                                @if ($evaluasi)
-                                    {{ $evaluasi->nilai }}
-                                @else
-                                    Tidak tersedia
-                                @endif
-                            </td>
-                        @endforeach
+                        <th>Kriteria</th>
+                        <th>Bobot</th>
+                        <th>Aksi</th> 
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </br>
-
-@php
-    $min_cas1 = PHP_INT_MAX;
-    $min_cas3 = PHP_INT_MAX;
-    $max_cas2 = PHP_INT_MIN;
-    $max_cas4 = PHP_INT_MIN;
-@endphp
-
-@foreach ($sahams as $saham)
-    @foreach ($kriterias as $kriteria)
-        @php
-            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-            if ($evaluasi) {
-                switch ($kriteria->id) {
-                    case 1:
-                        if ($evaluasi->nilai <= 15) {
-                            $min_cas1 = min($min_cas1, 1);
-                        } elseif ($evaluasi->nilai >= 15.01 && $evaluasi->nilai <= 20.99) {
-                            $min_cas1 = min($min_cas1, 2);
-                        } elseif ($evaluasi->nilai >= 21) {
-                            $min_cas1 = min($min_cas1, 3);
-                        }
-                        break;
-                    case 2:
-                        if ($evaluasi->nilai <= 10) {
-                            $max_cas2 = max($max_cas2, 1);
-                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 15.99) {
-                            $max_cas2 = max($max_cas2, 2);
-                        } elseif ($evaluasi->nilai >= 16) {
-                            $max_cas2 = max($max_cas2, 3);
-                        }
-                        break;
-                    case 3:
-                        if ($evaluasi->nilai <= 1) {
-                            $min_cas3 = min($min_cas3, 1);
-                        } elseif ($evaluasi->nilai >= 1.01 && $evaluasi->nilai <= 2.09) {
-                            $min_cas3 = min($min_cas3, 2);
-                        } elseif ($evaluasi->nilai >= 2.1) {
-                            $min_cas3 = min($min_cas3, 3);
-                        }
-                        break;
-                    case 4:
-                        if ($evaluasi->nilai <= 10) {
-                            $max_cas4 = max($max_cas4, 1);
-                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 30.99) {
-                            $max_cas4 = max($max_cas4, 2);
-                        } elseif ($evaluasi->nilai >= 31) {
-                            $max_cas4 = max($max_cas4, 3);
-                        }
-                        break;
-                    default:
-                        // do nothing
-                }
-            }
-        @endphp
-    @endforeach
-@endforeach
-
-    <h1>Bobot Nilai</h1>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Saham</th>
-            @foreach ($kriterias as $kriteria)
-                <th>{{ $kriteria->indikator }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sahams as $saham)
-            <tr>
-                <td>{{ $saham->saham }}</td>
-                @foreach ($kriterias as $kriteria)
-                    <td>
-                        @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                            if ($evaluasi) {
-                                switch ($kriteria->id) {
-                                    case 1:
-                                        if ($evaluasi->nilai <= 15) {
-                                            echo 1;
-                                        } elseif ($evaluasi->nilai >= 15.01 && $evaluasi->nilai <= 20.99) {
-                                            echo 2;
-                                        } elseif ($evaluasi->nilai >= 21) {
-                                            echo 3;
-                                        }
-                                        break;
-                                    case 2:
-                                        if ($evaluasi->nilai <= 10) {
-                                            echo 1;
-                                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 15.99) {
-                                            echo 2;
-                                        } elseif ($evaluasi->nilai >= 16) {
-                                            echo 3;
-                                        }
-                                        break;
-                                    case 3:
-                                        if ($evaluasi->nilai <= 1) {
-                                            echo 1;
-                                        } elseif ($evaluasi->nilai >= 1.01 && $evaluasi->nilai <= 2.09) {
-                                            echo 2;
-                                        } elseif ($evaluasi->nilai >= 2.1) {
-                                            echo 3;
-                                        }
-                                        break;
-                                    case 4:
-                                        if ($evaluasi->nilai <= 10) {
-                                            echo 1;
-                                        } elseif ($evaluasi->nilai >= 10.01 && $evaluasi->nilai <= 30.99) {
-                                            echo 2;
-                                        } elseif ($evaluasi->nilai >= 31) {
-                                            echo 3;
-                                        }
-                                        break;
-                                    default:
-                                        echo "Tidak tersedia";
-                                }
-                            } else {
-                                echo "Tidak tersedia";
-                            }
-                        @endphp
-                    </td>
-                @endforeach
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-</br>
-    <h1>Normalisasi</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Saham</th>
-            @foreach ($kriterias as $kriteria)
-                <th>{{ $kriteria->indikator }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sahams as $saham)
-            <tr>
-                <td>{{ $saham->saham }}</td>
-                @foreach ($kriterias as $kriteria)
-                    <td>
-                        @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                            if ($evaluasi) {
-                                $nilai = $evaluasi->nilai;
-                                switch ($kriteria->id) {
-                                    case 1:
-                                        if ($nilai <= 15) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 21) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 2:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 16) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 3:
-                                        if ($nilai <= 1) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 2.1) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 4:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 31) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    default:
-                                        $nilai = "Tidak tersedia";
-                                }
-                                if ($kriteria->atribut == 'Benefit') {
-                                if ($kriteria->id == 2) {
-                                    $nilai = (double)($nilai / $max_cas2);
-                                } elseif ($kriteria->id == 4) {
-                                    $nilai = (double)($nilai / $max_cas4);
-                                }
-                            } elseif ($kriteria->atribut == 'Cost') {
-                                if ($kriteria->id == 1) {
-                                    $nilai = (double)($min_cas1 / $nilai);
-                                } elseif ($kriteria->id == 3) {
-                                    $nilai = (double)($min_cas3 / $nilai);
-                                }
-                            }
-                            echo $nilai;
-                        } else {
-                            echo "Tidak tersedia";
-                        }
-                        @endphp
-                    </td>
-                @endforeach
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-                        </br>
-                        <h1>Pengkalian</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Saham</th>
-            @foreach ($kriterias as $kriteria)
-                <th>{{ $kriteria->indikator }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sahams as $saham)
-            <tr>
-                <td>{{ $saham->saham }}</td>
-                @foreach ($kriterias as $kriteria)
-                    <td>
-                        @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                            if ($evaluasi) {
-                                $nilai = $evaluasi->nilai;
-                                switch ($kriteria->id) {
-                                    case 1:
-                                        if ($nilai <= 15) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 21) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 2:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 16) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 3:
-                                        if ($nilai <= 1) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 2.1) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 4:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 31) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    default:
-                                        $nilai = "Tidak tersedia";
-                                }
-                                if ($kriteria->atribut == 'Benefit') {
-                                if ($kriteria->id == 2) {
-                                    $nilai = (double)($nilai / $max_cas2);
-                                } elseif ($kriteria->id == 4) {
-                                    $nilai = (double)($nilai / $max_cas4);
-                                }
-                            } elseif ($kriteria->atribut == 'Cost') {
-                                if ($kriteria->id == 1) {
-                                    $nilai = (double)($min_cas1 / $nilai);
-                                } elseif ($kriteria->id == 3) {
-                                    $nilai = (double)($min_cas3 / $nilai);
-                                }
-                            }
-                                $nilai *= $kriteria->bobot;
-                                echo $nilai;
-                            } else {
-                                echo "Tidak tersedia";
-                            }
-                        @endphp
-                    </td>
-                @endforeach
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-                        </br>
-                        <h1>Penambahan</h1>
-                        <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Saham</th>
-            <th>Nilai</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sahams as $saham)
-            <tr>
-                <td>{{ $saham->saham }}</td>
-                <td>
-                    @php
-                        $totalNilai = 0;
-                    @endphp
+                </thead>
+                <tbody>
                     @foreach ($kriterias as $kriteria)
-                        @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                            if ($evaluasi) {
-                                $nilai = $evaluasi->nilai;
-                                switch ($kriteria->id) {
-                                    case 1:
-                                        if ($nilai <= 15) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 15.01 && $nilai <= 20.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 21) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 2:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 15.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 16) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 3:
-                                        if ($nilai <= 1) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 1.01 && $nilai <= 2.09) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 2.1) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    case 4:
-                                        if ($nilai <= 10) {
-                                            $nilai = 1.0;
-                                        } elseif ($nilai >= 10.01 && $nilai <= 30.99) {
-                                            $nilai = 2.0;
-                                        } elseif ($nilai >= 31) {
-                                            $nilai = 3.0;
-                                        }
-                                        break;
-                                    default:
-                                        $nilai = "Tidak tersedia";
-                                }
-                                if ($kriteria->atribut == 'Benefit') {
-                                if ($kriteria->id == 2) {
-                                    $nilai = (double)($nilai / $max_cas2);
-                                } elseif ($kriteria->id == 4) {
-                                    $nilai = (double)($nilai / $max_cas4);
-                                }
-                            } elseif ($kriteria->atribut == 'Cost') {
-                                if ($kriteria->id == 1) {
-                                    $nilai = (double)($min_cas1 / $nilai);
-                                } elseif ($kriteria->id == 3) {
-                                    $nilai = (double)($min_cas3 / $nilai);
-                                }
-                            }
-                                $nilai *= $kriteria->bobot;
-                                $totalNilai += $nilai;
-                            }
-                        @endphp
+                    <tr>
+                        <td>{{ $kriteria->indikator }}</td>
+                        <td id="bobot{{ $kriteria->id }}">{{ $kriteria->bobot }}</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="editBobot({{ $kriteria->id }})">Edit</button>
+                        </td>
+                    </tr>
                     @endforeach
-                    {{ number_format($totalNilai, 3, ',', '.') }}
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
-<script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
         const openSidebarBtn = document.getElementById('openSidebar');
         const sidebar = document.getElementById('sidebar');
         const content = document.querySelector('.content');
@@ -515,6 +124,35 @@
                 content.style.marginLeft = '250px';
             }
         });
+
+        function editBobot(id) {
+        const bobotElement = document.getElementById('bobot' + id);
+        const currentBobot = bobotElement.innerText;
+        const newBobot = prompt('Masukkan nilai bobot baru:', currentBobot);
+        
+        if (newBobot !== null && newBobot.trim() !== '') {
+            fetch(`{{ url('update-bobot') }}/${id}`, { 
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ bobot: newBobot })
+            })
+            .then(response => {
+                if (response.ok) {
+                    bobotElement.innerText = newBobot;
+                    alert('Nilai bobot berhasil diperbarui.');
+                } else {
+                    throw new Error('Gagal memperbarui nilai bobot.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan. Mohon coba lagi.');
+            });
+        }
+    }
     </script>
 </body>
 </html>

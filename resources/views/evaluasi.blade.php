@@ -622,8 +622,8 @@
         @endphp
     @endforeach
 @endforeach
-        <h1>Perangkingan</h1>
-        @php
+<h1>Perangkingan</h1>
+@php
     $totalNilaiPerSaham = [];
     foreach ($sahams as $saham) {
         $totalNilai = 0;
@@ -677,18 +677,18 @@
                         break;
                 }
                 if ($kriteria->atribut == 'Benefit') {
-                                if ($kriteria->id == 2) {
-                                    $nilai = (double)($nilai / $max_cas2);
-                                } elseif ($kriteria->id == 4) {
-                                    $nilai = (double)($nilai / $max_cas4);
-                                }
-                            } elseif ($kriteria->atribut == 'Cost') {
-                                if ($kriteria->id == 1) {
-                                    $nilai = (double)($min_cas1 / $nilai);
-                                } elseif ($kriteria->id == 3) {
-                                    $nilai = (double)($min_cas3 / $nilai);
-                                }
-                            }
+                    if ($kriteria->id == 2) {
+                        $nilai = (double)($nilai / $max_cas2);
+                    } elseif ($kriteria->id == 4) {
+                        $nilai = (double)($nilai / $max_cas4);
+                    }
+                } elseif ($kriteria->atribut == 'Cost') {
+                    if ($kriteria->id == 1) {
+                        $nilai = (double)($min_cas1 / $nilai);
+                    } elseif ($kriteria->id == 3) {
+                        $nilai = (double)($min_cas3 / $nilai);
+                    }
+                }
                 $nilai *= $kriteria->bobot;
                 $totalNilai += $nilai;
             }
@@ -714,6 +714,33 @@
         @endforeach
     </tbody>
 </table>
+
+@php
+    // Ambil 3 besar saham dari array asosiatif
+    $topThree = array_slice($totalNilaiPerSaham, 0, 3, true);
+@endphp
+
+<div style="background-color: #f2f2f2; padding: 20px; border-radius: 10px;">
+    <h2 style="color: #007bff;">Rekomendasi Saham Bluechip Terbaik</h2>
+    <p>Setelah melakukan perhitungan berdasarkan fundamentalnya, berikut adalah rekomendasi saham bluechip terbaik untuk saat ini:</p>
+    <ul style="list-style-type: none; padding-left: 0;">
+        @foreach ($topThree as $saham => $totalNilai)
+            <li style="margin-bottom: 20px;">
+                <div style="display: flex; align-items: center;">
+                    <div style="width: 30px; height: 30px; background-color: #007bff; color: #fff; border-radius: 50%; text-align: center; font-weight: bold; font-size: 18px; line-height: 30px; margin-right: 10px;">{{ $loop->iteration }}</div>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">{{ $saham }}</h4>
+                        <p style="margin: 0;">Total Nilai: {{ $totalNilai }}</p>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+    <p style="margin-top: 20px;">Pertimbangkan untuk memasukkan salah satu atau lebih dari saham-saham di atas ke dalam portofolio investasi Anda.</p>
+</div>
+
+
+
     </div>
     <script>
         const openSidebarBtn = document.getElementById('openSidebar');

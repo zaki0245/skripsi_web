@@ -91,7 +91,7 @@
                 <form action="{{ route('evaluasi') }}" method="GET" class="float-right">
                     <div class="input-group">
                         <select name="id" style="width: 200px"; class="form-control">
-                            <option value="">Pilih Tgl</option>
+                            <option value="">Pilih Waktu</option>
                             @foreach ($evaluasi as $eval)
                                 <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y H:i:s', strtotime($eval->created_at)) }}</option>
                             @endforeach

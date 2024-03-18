@@ -63,6 +63,7 @@
     </style>
 </head>
 <body>
+    @include('sweetalert::alert')
     <button id="openSidebar">&#9776;</button>
     <div class="sidebar" id="sidebar">
         <h2>Fitur</h2>
@@ -82,7 +83,14 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content" id="content">
-        <h1>Data</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Data Realtime</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ route('data.save') }}" class="btn btn-primary float-right">Simpan</a>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -83,7 +83,26 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content">
-    <h1>Data</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Data</h1>
+            </div>
+            <div class="col-6">
+                <form action="{{ route('evaluasi') }}" method="GET" class="float-right">
+                    <div class="input-group">
+                        <select name="id" style="width: 200px"; class="form-control">
+                            <option value="">Pilih Tgl</option>
+                            @foreach ($evaluasi as $eval)
+                                <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y H:i:s', strtotime($eval->created_at)) }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -100,7 +119,14 @@
                         @foreach ($kriterias as $kriteria)
                             <td>
                                 @php
-                                    $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                                    if($date){
+                                        $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                                                    ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                                                    ->first();
+                                    }
+                                    else{
+                                        $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                                    }
                                 @endphp
                                 @if ($evaluasi)
                                     {{ $evaluasi->nilai }}
@@ -125,7 +151,14 @@
 @foreach ($sahams as $saham)
     @foreach ($kriterias as $kriteria)
         @php
-            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
             if ($evaluasi) {
                 switch ($kriteria->id) {
                     case 1:
@@ -189,7 +222,14 @@
                 @foreach ($kriterias as $kriteria)
                     <td>
                         @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                        if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
                             if ($evaluasi) {
                                 switch ($kriteria->id) {
                                     case 1:
@@ -259,7 +299,14 @@
                 @foreach ($kriterias as $kriteria)
                     <td>
                         @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                        if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
                             if ($evaluasi) {
                                 $nilai = $evaluasi->nilai;
                                 switch ($kriteria->id) {
@@ -344,7 +391,14 @@
                 @foreach ($kriterias as $kriteria)
                     <td>
                         @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                        if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
                             if ($evaluasi) {
                                 $nilai = $evaluasi->nilai;
                                 switch ($kriteria->id) {
@@ -431,7 +485,14 @@
                     @endphp
                     @foreach ($kriterias as $kriteria)
                         @php
-                            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                        if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
                             if ($evaluasi) {
                                 $nilai = $evaluasi->nilai;
                                 switch ($kriteria->id) {
@@ -508,7 +569,14 @@
     @foreach ($sahams as $saham)
     @foreach ($kriterias as $kriteria)
         @php
-            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+        if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
             if ($evaluasi) {
                 switch ($kriteria->id) {
                     case 1:
@@ -560,7 +628,14 @@
     foreach ($sahams as $saham) {
         $totalNilai = 0;
         foreach ($kriterias as $kriteria) {
-            $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            if($date){
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
+                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                            ->first();
+            }
+            else{
+                $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+            }
             if ($evaluasi) {
                 $nilai = $evaluasi->nilai;
                 switch ($kriteria->id) {

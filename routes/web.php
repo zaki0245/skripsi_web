@@ -5,6 +5,7 @@ use App\Http\Controllers\SPKSahamController;
 use App\Http\Controllers\KriteriaController;
 
 Route::get('/data', [SPKSahamController::class, 'index'])->name('data.index');
+Route::get('/data/save', [SPKSahamController::class, 'save'])->name('data.save');
 Route::get('/perhitungan', [SPKSahamController::class, 'hitung'])->name('perhitungan');
 Route::get('/evaluasi', [SPKSahamController::class, 'evaluasi'])->name('evaluasi');
 Route::put('/update-bobot/{id}', [KriteriaController::class, 'updateBobot'])->name('update.bobot');

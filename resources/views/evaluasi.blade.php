@@ -120,8 +120,8 @@
                             <td>
                                 @php
                                     if($date){
-                                        $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                                                    ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                                        $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                                                    ->whereTime('created_at', '>=', $date->toTimeString()) 
                                                     ->first();
                                     }
                                     else{
@@ -152,8 +152,8 @@
     @foreach ($kriterias as $kriteria)
         @php
             if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{
@@ -223,8 +223,8 @@
                     <td>
                         @php
                         if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{
@@ -300,8 +300,8 @@
                     <td>
                         @php
                         if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString())
                             ->first();
             }
             else{
@@ -392,8 +392,8 @@
                     <td>
                         @php
                         if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{
@@ -486,8 +486,8 @@
                     @foreach ($kriterias as $kriteria)
                         @php
                         if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{
@@ -570,8 +570,8 @@
     @foreach ($kriterias as $kriteria)
         @php
         if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{
@@ -629,8 +629,8 @@
         $totalNilai = 0;
         foreach ($kriterias as $kriteria) {
             if($date){
-                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) // Filter by date
-                            ->whereTime('created_at', '>=', $date->toTimeString()) // Filter by hour
+                $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                            ->whereTime('created_at', '>=', $date->toTimeString()) 
                             ->first();
             }
             else{

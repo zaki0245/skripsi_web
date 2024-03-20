@@ -21,7 +21,7 @@ class SPKSahamController extends Controller
     public function save(){
         $sahams = Alternatif::all();
         $kriterias = Kriteria::all();
-
+    
         foreach($sahams as $saham){
             foreach($kriterias as $kriteria){
                 $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->whereNull('created_at')->first();
@@ -29,15 +29,17 @@ class SPKSahamController extends Controller
                     Evaluasi::create([
                         'id_alternatif' => $saham->id,
                         'id_kriteria' => $kriteria->id,
-                        'nilai' => $evaluasi->nilai
+                        'nilai' => $evaluasi->nilai,
+                        'created_at' => now() 
                     ]);
                 }
             }
         }
-
+    
         Alert::success('Success', 'Data berhasil disimpan!');
         return redirect()->back();
     }
+    
 
     public function evaluasi(Request $request)
     {

@@ -140,7 +140,6 @@
             @endforeach
         </tbody>
     </table>
-</div>
 
 @php
     $min_cas1 = PHP_INT_MAX;
@@ -738,16 +737,17 @@
         @endforeach
     </ul>
     <p style="margin-top: 20px;">Pertimbangkan untuk memasukkan salah satu atau lebih dari saham-saham di atas ke dalam portofolio investasi Anda.</p>
-</div>
-
-
-
+    </div>
     </div>
     <script>
     function printTable() {
         var printContents = document.getElementById("dataTable").outerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
+        var style = '<style type="text/css">';
+        style += '@page { size: landscape; }';
+        style += '</style>';
+        document.body.innerHTML = style + printContents;
         window.print();
         document.body.innerHTML = originalContents;
     }
@@ -766,6 +766,5 @@
         }
     });
 </script>
-
 </body>
 </html>

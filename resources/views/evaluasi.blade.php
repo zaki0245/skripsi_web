@@ -83,63 +83,64 @@
         <h1>Sistem Rekomendasi Saham</h1>
     </div>
     <div class="content">
-        <div class="row">
-            <div class="col-6">
-                <h1>Data</h1>
-            </div>
-            <div class="col-6">
-                <form action="{{ route('evaluasi') }}" method="GET" class="float-right">
-                    <div class="input-group">
-                        <select name="id" style="width: 200px"; class="form-control">
-                            <option value="">Pilih Waktu</option>
-                            @foreach ($evaluasi as $eval)
-                                <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y', strtotime($eval->created_at)) }}</option>
-                            @endforeach
-                        </select>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Data</h1>
         </div>
-        <table class="table table-striped">
-            <thead>
+        <div class="col-6">
+            <form action="{{ route('evaluasi') }}" method="GET" class="float-right">
+                <div class="input-group">
+                    <select name="id" style="width: 200px" class="form-control">
+                        <option value="">Pilih Waktu</option>
+                        @foreach ($evaluasi as $eval)
+                            <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y', strtotime($eval->created_at)) }}</option>
+                        @endforeach
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-success float-right mr-2" onclick="printTable()">Print</button>
+        </div>
+    </div>
+    <table id="dataTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Saham</th>
+                @foreach ($kriterias as $kriteria)
+                    <th>{{ $kriteria->indikator }}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($sahams as $saham)
                 <tr>
-                    <th>Saham</th>
+                    <td>{{ $saham->saham }}</td>
                     @foreach ($kriterias as $kriteria)
-                        <th>{{ $kriteria->indikator }}</th>
+                        <td>
+                            @php
+                                if($date){
+                                    $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
+                                                ->whereTime('created_at', '>=', $date->toTimeString()) 
+                                                ->first();
+                                }
+                                else{
+                                    $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
+                                }
+                            @endphp
+                            @if ($evaluasi)
+                                {{ $evaluasi->nilai }}
+                            @else
+                                Tidak tersedia
+                            @endif
+                        </td>
                     @endforeach
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($sahams as $saham)
-                    <tr>
-                        <td>{{ $saham->saham }}</td>
-                        @foreach ($kriterias as $kriteria)
-                            <td>
-                                @php
-                                    if($date){
-                                        $evaluasi = App\Models\Evaluasi::where(['id_kriteria' => $kriteria->id, 'id_alternatif' => $saham->id])->whereDate('created_at', $date->toDateString()) 
-                                                    ->whereTime('created_at', '>=', $date->toTimeString()) 
-                                                    ->first();
-                                    }
-                                    else{
-                                        $evaluasi = $saham->evaluasi->where('id_kriteria', $kriteria->id)->first();
-                                    }
-                                @endphp
-                                @if ($evaluasi)
-                                    {{ $evaluasi->nilai }}
-                                @else
-                                    Tidak tersedia
-                                @endif
-                            </td>
-                        @endforeach
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </br>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 @php
     $min_cas1 = PHP_INT_MAX;
@@ -743,19 +744,28 @@
 
     </div>
     <script>
-        const openSidebarBtn = document.getElementById('openSidebar');
-        const sidebar = document.getElementById('sidebar');
-        const content = document.querySelector('.content');
+    function printTable() {
+        var printContents = document.getElementById("dataTable").outerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
 
-        openSidebarBtn.addEventListener('click', () => {
-            if (sidebar.style.left === '0px') {
-                sidebar.style.left = '-250px';
-                content.style.marginLeft = '0';
-            } else {
-                sidebar.style.left = '0';
-                content.style.marginLeft = '250px';
-            }
-        });
-    </script>
+    const openSidebarBtn = document.getElementById('openSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.querySelector('.content');
+
+    openSidebarBtn.addEventListener('click', () => {
+        if (sidebar.style.left === '0px') {
+            sidebar.style.left = '-250px';
+            content.style.marginLeft = '0';
+        } else {
+            sidebar.style.left = '0';
+            content.style.marginLeft = '250px';
+        }
+    });
+</script>
+
 </body>
 </html>

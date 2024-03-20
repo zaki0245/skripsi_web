@@ -108,7 +108,53 @@
                 </tbody>
             </table>
         </div>
+    <h1>Keterangan</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">PER (Price to Earnings Ratio)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">PER adalah rasio yang digunakan untuk menilai valuasi sebuah saham dengan membandingkan harga saham per lembar dengan laba per lembar. Rasio ini memberikan gambaran tentang berapa kali investor membayar laba per lembar saham tersebut. Semakin tinggi PER suatu saham, semakin mahal harga sahamnya dibandingkan dengan laba yang dihasilkan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-success mb-3">
+                <div class="card-header bg-success text-white">
+                    <h4 class="card-title">NPM (Net Profit Margin)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">NPM adalah rasio yang mengukur seberapa besar laba bersih suatu perusahaan dibandingkan dengan pendapatan totalnya. Rasio ini memberikan gambaran tentang seberapa efisien perusahaan dalam menghasilkan laba dari pendapatan yang diperoleh. Semakin tinggi NPM suatu saham, semakin efisiensi perusahaan dalam menghasilkan laba dari pendapatannya.</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-warning mb-3">
+                <div class="card-header bg-warning text-white">
+                    <h4 class="card-title">PBV (Price to Book Value)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">PBV adalah rasio yang digunakan untuk menilai valuasi sebuah saham dengan membandingkan harga saham per lembar dengan nilai buku per lembar. Rasio ini memberikan gambaran tentang seberapa mahal harga saham dibandingkan dengan nilai buku per lembar saham tersebut.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-info mb-3">
+                <div class="card-header bg-info text-white">
+                    <h4 class="card-title">ROE (Return on Equity)</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">ROE adalah rasio yang mengukur tingkat profitabilitas suatu perusahaan dengan membandingkan laba bersih dengan ekuitas pemegang saham. Rasio ini memberikan gambaran tentang seberapa efisien perusahaan dalam menghasilkan laba dari ekuitas yang dimilikinya.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <script>
         const openSidebarBtn = document.getElementById('openSidebar');

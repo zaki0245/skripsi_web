@@ -93,7 +93,7 @@
                     <select name="id" style="width: 200px" class="form-control">
                         <option value="">Pilih Waktu</option>
                         @foreach ($evaluasi as $eval)
-                            <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y', strtotime($eval->created_at)) }}</option>
+                            <option value="{{ $eval->id }}" {{ $eval->id == $id ? 'selected' : '' }}>{{ date('d M Y H:i:s', strtotime($eval->created_at)) }}</option>
                         @endforeach
                     </select>
                     <div class="input-group-append">

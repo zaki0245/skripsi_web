@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
-        })->everyFiveMinutes();
+        })->hourlyAt(10);
     }
 
     /**

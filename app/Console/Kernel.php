@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
-        })->hourlyAt(10);
+        })->hourlyAt(40); //->dailyAt('11:40');
     }
 
     /**
